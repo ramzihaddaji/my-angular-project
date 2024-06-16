@@ -1,0 +1,21 @@
+.section-background {
+    background-image: url('C:/Users/Elbootic.com/Desktop/code/PfeFront/src/assets/images/hero-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* Style pour la description */
+.description {
+    font-weight: lighter; /* Texte en gras */
+    text-align: center; /* Centrer le texte */
+  }
+  
+  /* Style pour le prix */
+  .price {
+    color: rgb(205, 12, 12); /* Couleur du texte */
+  }
+  
+  .event-name {
+    font-size: 18px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+  }

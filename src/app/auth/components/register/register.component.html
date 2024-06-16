@@ -1,0 +1,71 @@
+<app-navbarindex></app-navbarindex>
+
+<section class="vh-100" style="background-color: rgb(223, 223, 223);">
+  <div class="container py-5 h-100"  >
+    <div class="row d-flex justify-content-center align-items-center h-100" >
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;"  >
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="assets/registration1.png"
+                alt="registre form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form class="user" (ngSubmit)="registerUser()">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <span class="h1 fw-bold mb-0">Registration Form</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Nom:</label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="registerRequest.nom" required>
+                    <div *ngIf="nameInvalid" class="text-danger">Le nom est requis.</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Prenom:</label>
+                    <input type="text" class="form-control" id="Prenom" name="Prenom" [(ngModel)]="registerRequest.prenom" required>
+                    <div *ngIf="prenomInvalid" class="text-danger">Le prénom est requis.</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">NCIN:</label>
+                    <input type="number" class="form-control" id="NCIN" name="NCIN" [(ngModel)]="registerRequest.ncin" required>
+                    <div *ngIf="ncinInvalid" class="text-danger">Le NCIN est requis.</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">date_naiss:</label>
+                    <input type="date" class="form-control" id="date_naiss" name="date_naiss" [(ngModel)]="registerRequest.date_naiss" required>
+                    <div *ngIf="dateNaissInvalid" class="text-danger">La date de naissance est requise.</div>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="registerRequest.email" required>
+                    <div *ngIf="emailInvalid" class="text-danger">L'email est requis.</div>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="registerRequest.password" required>
+                    <div *ngIf="passwordInvalid" class="text-danger">Le mot de passe est requis.</div>
+                  </div>
+                
+                  <button type="submit" class="btn btn-primary btn-user btn-block">Register</button>
+                </form>
+                
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<app-footer></app-footer>
+
+

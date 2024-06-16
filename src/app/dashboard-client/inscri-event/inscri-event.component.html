@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Mes Inscriptions</h2>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Nom de l'Événement</th>
+          <th>Date d'Inscription</th>
+          <th>Date de Fin</th>
+          <th>Statut</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inscription of inscriptionList">
+          <td>{{ inscription.evenement?.nom }}</td>
+          <td>{{ inscription.date_inscription | date }}</td>
+          <td>{{ inscription.evenement?.date_fin | date }}</td>
+          <td>{{ inscription.status }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              (click)="displayResponse(inscription)"
+            >
+              Response
+            </button>
+            <a class="delete" (click)="deleteInscription(inscription.id )">
+              <span>Supprimer</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="clearfix">
+      <div class="hint-text">
+        Affichage de <b>{{ inscriptionList.length }}</b> inscriptions
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Responses a cette inscription
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div *ngFor="let response of ResponseList" class="response-card">
+            <h3 class="response-title">
+              Question : {{ response.question?.title }}
+            </h3>
+            <p class="response-text">Réponse : {{ response.response }}</p>
+
+            <hr />
+          </div>
+          <p class="response-date">
+            Date d'inscription :
+            {{
+              ResponseList.length > 0
+                ? ResponseList[0].inscription?.date_inscription
+                : ""
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

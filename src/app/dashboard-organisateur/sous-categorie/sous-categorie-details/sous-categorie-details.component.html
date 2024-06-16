@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">{{ categorie.id ? "Edit" : "Add" }} Sous Categorie</h4>
+          <button type="button" class="close" data-dismiss="modal" routerLink="/dashboard" >&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="sous_categorie" [(ngModel)]="categorie.sousCategorie" name="sous_categorie" required>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deleteCategorie()">Delete</button>
+          <input type="button"  class="btn btn-success" value="Save" (click)="saveCategorie() " />
+        </div>
+      </form>
+    </div>
+  </div>

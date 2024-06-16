@@ -1,0 +1,33 @@
+<app-navbarindex></app-navbarindex>
+
+<div *ngIf="selectedEvenement" class="details-container" [style.background-image]="'url(' + selectedEvenement.image + ')'">
+    <div class="form-container">
+        <br>
+        <form>
+            <h2 class="event-name">{{ selectedEvenement?.nom }}</h2>
+            <p class="description">{{ selectedEvenement?.description }}</p>
+            <div class="details-row">
+                <p class="detail-label">Lieu :</p>
+                <p class="detail-value">{{ selectedEvenement?.lieu }}</p>
+            </div>
+            <div class="details-row">
+                <p class="detail-label">Frais :</p>
+                <p class="detail-value">{{ selectedEvenement?.frais }}</p>
+            </div>
+            <div class="details-row">
+                <p class="detail-label">Date de début :</p>
+                <p class="detail-value">{{ selectedEvenement?.date_debut | date: 'yyyy-MM-dd HH:mm' }}</p>
+            </div>
+            <div class="details-row">
+                <p class="detail-label">Date de fin :</p>
+                <p class="detail-value">{{ selectedEvenement?.date_fin | date: 'yyyy-MM-dd HH:mm' }}</p>
+            </div>
+            <div class="details-row">
+                <p class="detail-label">Nombre de places :</p>
+                <p class="detail-value">{{ selectedEvenement?.nombreDePlace }}</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>

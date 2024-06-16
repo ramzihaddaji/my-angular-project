@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Ressources</h2>
+        </div>
+        <div class="col-sm-6">
+          <a [routerLink]="'ressourceAdd/' + userID" class="btn btn-success" data-toggle="modal">
+            <span>Ajouter Nouveau</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Collaborateur</th>
+          <th>Sous-catégories</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of ressourceEventList">
+          <td>{{ resource.ressource }}</td>
+          <td>
+            <span *ngIf="expandedDescriptions[resource.id!]">{{ resource.descRes }}</span>
+            <span *ngIf="!expandedDescriptions[resource.id!]">
+              {{ resource.descRes!.length > 30 ? (resource.descRes | slice:0:30)  : resource.descRes }}
+            </span>
+            <a href="#" *ngIf="resource.descRes!.length > 30" (click)="toggleDescription($event, resource.id!)">
+              {{ expandedDescriptions[resource.id!] ? 'Voir moins' : 'Lire la suite' }}
+            </a>
+          </td>
+          <td>{{ resource.prixRes }}</td>
+          <td>{{ resource.quantite }}</td>
+          <td>{{ resource.collaborateur?.nom }}</td>
+          <td>{{ resource.sousCategorie?.sousCategorie }}</td>
+          <td>
+            <a (click)="editResource(resource)" class="edit" data-toggle="modal" data-target="#editModal">
+              <span>Modifier</span>
+            </a>
+            <a href="#deleteModal" class="delete" data-toggle="modal" (click)="selectRessources(resource)">
+              <span>Supprimer</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="clearfix">
+      <div class="hint-text">
+        Affichage de <b>{{ ressourceEventList.length }}</b> ressources
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de modification -->
+<div id="editModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="saveRessources()">
+        <div class="modal-header">
+          <h4 class="modal-title">{{ ressources.id ? "Modifier" : "Ajouter" }} Ressource</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="ressources.ressource" name="nom" required />
+          </div>
+          <div class="form-group">
+            <label for="descRes">Description</label>
+            <input type="text" class="form-control" id="descRes" [(ngModel)]="ressources.descRes" name="descRes" required />
+          </div>
+          <div class="form-group">
+            <label for="prixRes">Prix</label>
+            <input type="number" class="form-control" id="prixRes" [(ngModel)]="ressources.prixRes" name="prixRes" required />
+          </div>
+          <div class="form-group">
+            <label for="quantite">Quantité</label>
+            <input type="number" class="form-control" id="quantite" [(ngModel)]="ressources.quantite" name="quantite" required />
+          </div>
+          <div class="form-group">
+            <label for="sousCategorieId">Sous-catégorie</label>
+            <select class="form-control" id="sousCategorieId" [(ngModel)]="ressources.sousCategorieId" name="sousCategorieId" required>
+              <option *ngFor="let souscategorie of souscategories" [value]="souscategorie.id">{{ souscategorie.sousCategorie }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-success">{{ ressources.id ? "Enregistrer" : "Ajouter" }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de suppression -->
+<div id="deleteModal" class="modal fade" *ngIf="selectedRessource">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Modal de Suppression</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Êtes-vous sûr de vouloir supprimer cet enregistrement ? {{ selectedRessource.ressource }}</p>
+          <p class="text-warning">
+            <small>Cette action ne peut pas être annulée.</small>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-danger" (click)="deleteRessources()">Supprimer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

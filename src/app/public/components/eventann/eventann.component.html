@@ -1,0 +1,208 @@
+<div style="background-image: url('assets/images/hero-1.jpg')">
+  <app-navbarindex></app-navbarindex>
+  <br />
+
+  <form
+    class="custom-form"
+    style="background-color: #f0f0f0; padding: 20px; border-radius: 10px"
+  >
+  <div class="modal-header">
+    <h4 class="modal-title">{{ eventAnn.id ? "Modifier" : "Annoncer" }} un événement</h4>
+  </div>
+    <label for="imageUrl">Image URL:</label>
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      class="form-control"
+      id="imageUrl"
+      name="imageUrl"
+      required
+    />
+    <div *ngIf="imageE" class="text-danger">
+      Choisir une image.
+    </div>
+
+    <div class="modal-body">
+      <label>nom</label>
+      <input
+        type="text"
+        [(ngModel)]="eventAnn.nom"
+        class="form-control"
+        name="nom"
+        required
+        
+        />
+        <!-- Affichage de l'erreur si le champ est invalide et a été touché -->
+        <div *ngIf="nomInvalid" class="text-danger">
+          La nom est obligatoire.
+        </div>
+    </div>
+    <div class="modal-body">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        [(ngModel)]="eventAnn.description"
+        name="description"
+        required
+      ></textarea>
+      <div *ngIf="descriptionInvalid" class="text-danger">
+        La description est obligatoire.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>date_debut</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="eventAnn.date_debut"
+        class="form-control"
+        name="date_debut"
+        required
+        />
+        <!-- Affichage de l'erreur si le champ est invalide et a été touché -->
+        <div *ngIf="dateDebutInvalid" class="text-danger">
+          La date_debut est obligatoire.
+        </div>
+    </div>
+    <div class="form-group">
+      <label>date_fin</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="eventAnn.date_fin"
+        class="form-control"
+        name="date_fin"
+        required
+
+        />
+        <!-- Affichage de l'erreur si le champ est invalide et a été touché -->
+        <div *ngIf="dateFinInvalid" class="text-danger">
+          La date_fin est obligatoire.
+        </div>
+    </div>
+    <div class="form-group">
+      <label>lieu</label>
+      <input
+        type="text"
+        [(ngModel)]="eventAnn.lieu"
+        class="form-control"
+        name="lieu"
+        required
+        />
+        <!-- Affichage de l'erreur si le champ est invalide et a été touché -->
+        <div *ngIf="lieuInvalid" class="text-danger">
+          La lieu est obligatoire.
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="typeEvenement">Type de Evenement</label>
+      <select
+        class="form-control"
+        id="typeEvenement"
+        [(ngModel)]="eventAnn.typeEvenement"
+        name="typeEvenement"
+        required
+      >
+        <option value="Personnel">Personnel</option>
+        <option value="Public">Public</option>
+      </select>
+      <div *ngIf="typeEvenementE" class="text-danger">
+        Choisir une option.
+      </div>
+    </div>
+    <div *ngIf="eventAnn.typeEvenement === 'Public'">
+      <div class="form-group">
+        <label>nombreDePlace</label>
+        <input
+          type="number"
+          [(ngModel)]="eventAnn.nombreDePlace"
+          class="form-control"
+          name="nombreDePlace"
+          required
+        />
+        <div *ngIf="nombreDePlaceInvalid" class="text-danger">
+          Le nombre de place est obligatoire pour les événements publics.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fraisType">Type de Frais</label>
+        <select
+          class="form-control"
+          id="fraisType"
+          [(ngModel)]="fraisType"
+          name="fraisType"
+          required
+        >
+          <option value="gratuit">Gratuit</option>
+          <option value="payant">Payant</option>
+        </select>
+        <div *ngIf="typeFrais" class="text-danger">
+          Choisir une option.
+        </div>
+      </div>
+
+      <div *ngIf="fraisType === 'payant'" class="form-group">
+        <label for="frais">Frais</label>
+        <input
+          type="number"
+          [(ngModel)]="eventAnn.frais"
+          class="form-control"
+          name="frais"
+          required
+          #frais="ngModel"
+          />
+          <!-- Affichage de l'erreur si le champ est invalide et a été touché -->
+          <div *ngIf="frais.invalid && (frais.dirty || frais.touched)" class="text-danger">
+            La frais est obligatoire.
+          </div>
+      </div>
+    </div>
+    <div *ngIf="eventAnn.typeEvenement === 'Public'" class="form-group">
+      <label for="category">Catégorie Public:</label>
+      <select
+        id="category"
+        name="category"
+        class="form-control"
+        [(ngModel)]="eventAnn.categorieId"
+        required
+      >
+        <option value="">Sélectionnez une catégorie</option>
+        <option *ngFor="let category of getPublicCategorie()" [value]="category.id">
+          {{ category.nom }}
+        </option>
+      </select>
+      <div *ngIf="categorieE" class="text-danger">
+        Choisir une option.
+      </div>
+    </div>
+    <div *ngIf="eventAnn.typeEvenement === 'Personnel'" class="form-group">
+      <label for="category">Catégorie Personnel:</label>
+      <select
+        id="category"
+        name="category"
+        class="form-control"
+        [(ngModel)]="eventAnn.categorieId"
+        required
+      >
+        <option value="">Sélectionnez une catégorie</option>
+        <option *ngFor="let category of getPersonnelCategorie()" [value]="category.id">
+          {{ category.nom }}
+        </option>
+      </select>
+      <div *ngIf="categorieE" class="text-danger">
+        Choisir une option.
+      </div>
+    </div>
+  
+    <div *ngIf="categorieE" class="text-danger">
+      Choisir une option.
+    </div>
+    <input
+      class="btn btn-primary"
+      type="submit"
+      value="save"
+      (click)="addEventAnn()"
+    />
+  </form>
+
+  <app-footer></app-footer>
+</div>

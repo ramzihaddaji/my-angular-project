@@ -1,0 +1,46 @@
+/* contact-form.component.css */
+
+/* Style pour le container principal */
+.container {
+    margin-top: 50px;
+  }
+  
+  /* Style pour le titre */
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Style pour l'image */
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Espacement en bas de l'image */
+  }
+  
+  /* Style pour les champs de formulaire */
+  .form-control {
+    margin-bottom: 20px; /* Espacement entre les champs */
+  }
+  
+  /* Style pour le bouton d'envoi */
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style pour le message de succès */
+  #form-message-success {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+  }
+  

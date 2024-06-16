@@ -1,0 +1,52 @@
+.custom-form {
+  width: 70%; /* 70% de la largeur de la composante parente */
+  padding: 20px;
+  margin: 0 auto; /* Centre le formulaire horizontalement */
+  background: #ffffff59;
+  border-radius: 10px;
+  box-shadow: 3px 3px 23px -9px rgba(0, 0, 0, 0.86);
+}
+
+.custom-form input[type="text"],
+.custom-form input[type="file"],
+.custom-form textarea,
+.custom-form select,
+.custom-form input[type="datetime-local"],
+.custom-form input[type="number"] {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  background-color: #d0d0d0;
+  background-clip: padding-box;
+  border: 1px solid #d1d3e2;
+  border-radius: .35rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.custom-form button {
+  color: #555;
+  background: #ffffffad;
+  border: 1px solid #fff !important;
+  margin-top: 20px;
+  border-radius: 0px important;
+}
+
+.custom-form button:hover {
+  background: #fff !important;
+}
+
+.custom-form .modal-body {
+  padding: 0px;
+  display: block;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn{
+  margin-top: 10px;
+}

@@ -1,0 +1,40 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">{{userCOA.id ? "Modifier" : "Ajouter"}} Mon profil</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="userCOA.nom" name="nom" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" id="prenom" [(ngModel)]="userCOA.prenom" name="prenom" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="ncin">NCIN</label>
+            <input type="text" class="form-control" id="ncin" [(ngModel)]="userCOA.ncin" name="ncin" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="date_naiss">Date de naissance</label>
+            <input type="date" class="form-control" id="date_naiss" [(ngModel)]="userCOA.date_naiss" name="date_naiss" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="userCOA.email" name="email" required />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-success" (click)="saveUser()">{{userCOA.id ? "Enregistrer" : "Ajouter"}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

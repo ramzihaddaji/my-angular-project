@@ -1,0 +1,181 @@
+.form-title {
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 10px; /* Ajouter un espacement en bas */
+  }
+  
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    animation: slide-in 0.5s ease-out;
+  }
+  
+  input,
+  select {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    flex-grow: 1;
+  }
+  
+  button {
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+  }
+  
+  .learn-more-button {
+    border: 2px solid #413c45; /* Pink border */
+    color: dark; /* Pink text color */
+    background-color: transparent; /* Transparent background */
+    font-weight: bold; /* Bold font weight */
+    padding: 15px 40px; /* Increase padding for larger button */
+    border-radius: 12px; /* Increase border radius for more rounded corners */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Transition effect */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    display: block; /* Display as block to take up full width */
+    margin: 0 auto; /* Center align the button */
+    text-align: center; /* Center align text */
+  }
+  .custom-icon {
+    color: #8c4cd0;
+  }
+  .option-input {
+    margin-right: 10px; /* Ajoute une marge à droite de l'élément de l'option input */
+  }
+  
+  .option-button {
+    margin-top: auto; /* Aligne le bouton avec le bas de la form-field */
+  }
+  
+  .learn-more-button:hover {
+    background-color: #4e4a50;  
+    color: dark;  
+  }
+  .first-form {
+    margin-bottom: 20px; /* Ajoute une marge basse uniquement à la première forme */
+  }
+   
+  
+  .form-field {
+    display: flex;
+    justify-content: center;
+  align-items: center;
+    gap: 1rem;
+    animation: fade-in 0.5s ease-out;
+  }
+  .container-3d {
+    margin-top: 0px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer horizontalement */
+    justify-content: center; /* Centrer verticalement */
+    height: auto; /* Change la hauteur à auto */
+  }
+  
+  /* Remove margin-bottom from .form-3d class */
+  .form-3d {
+    height: auto !important;
+    width: 50%;
+    padding: 50px; /* Réduire la taille du padding */
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 25px rgba(185, 98, 232, 0.2);
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    text-align: center; /* Centrer le contenu */
+  }
+
+  .form-title {
+    font-weight: bold; /* Mettre en gras */
+    margin-bottom: 20px; /* Ajouter un espacement en bas */
+    position: relative; /* Position relative pour positionner la ligne */
+  }
+  
+
+  
+  .form-3d:hover:before {
+    transform: translateZ(-2px) scale(1.2);
+  }
+  
+  .form-3d .col {
+    margin: 0 auto;
+  }
+  
+  .form-3d label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-3d input,
+  .form-3d select,
+  .form-3d textarea,
+  .form-3d option {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  .btn-round {
+    border-radius: 50%; /* Make the button round */
+  }
+  
+  .btn-light {
+    background-color: #ffffff; /* Set background color to white */
+    color: #000000; /* Set text color */
+  }
+  
+  .btn-light:hover {
+    background-color: #f0f0f0; /* Set background color to light gray on hover */
+  }
+  
+  
+  
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-wrapper > label {
+    margin-bottom: 5px; /* Ajoute une marge en bas du label */
+  }
+  
+  .input-wrapper > * {
+    margin-bottom: 10px; /* Ajoute une marge en bas de chaque input, textarea, ou options */
+  }
+  
+  
+  
+  .form-control,
+  .form-select,
+  .form-options,
+  .form-check-label ,
+  .form-check-input{
+    /* Augmenter la taille des inputs */
+    padding: 12px;
+    font-size: 1.2rem;
+    /* Ajouter de l'espace autour des inputs */
+    margin-bottom: 10px;
+    /* Ajouter une bordure */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .form-options {
+    /* Ajuster la taille des boutons radio */
+    width: 20px;
+    height: 20px;
+  }
+  
+  .options label {
+    font-size: 1.2rem;
+  }
+  

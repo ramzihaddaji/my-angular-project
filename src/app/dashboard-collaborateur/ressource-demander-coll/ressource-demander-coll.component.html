@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Ressources demandées</h2>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Nom de la ressource</th>
+          <th>Quantité de la ressource</th>
+          <th>Nom de la ressource</th>
+          <th>Nom de l'événement</th>
+          <th>Sous-catégories</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of ressourceEventList">
+          <td>{{ resource.nom_ressource }}</td>
+          <td>{{ resource.quantite_ressource }}</td>
+          <td>{{ resource.ressource?.ressource }}</td>
+          <td>{{ resource.evenement?.nom }}</td>
+          <td>{{ resource.ressource?.sousCategorie?.sousCategorie }}</td>
+
+          <td>
+            <button type="button" class="btn btn-primary" (click)="accepterRessource(resource)" [disabled]="resource.status === true">
+              Accepter
+            </button>
+            <button type="button" class="btn btn-danger" (click)="refuserRessource(resource)" [disabled]="resource.status === true">
+              Annuler
+            </button>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="clearfix">
+      <div class="hint-text">
+        Affichage de <b>{{ ressourceEventList.length }}</b> ressources
+      </div>
+    </div>
+  </div>
+</div>

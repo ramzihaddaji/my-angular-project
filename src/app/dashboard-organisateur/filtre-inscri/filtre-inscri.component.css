@@ -1,0 +1,64 @@
+/* CSS pour la modal */
+.modal-dialog {
+    max-width: 90%; /* Définissez la largeur maximale de la modal */
+    max-height: 90%; /* Définissez la hauteur maximale de la modal */
+    margin: 1.75rem auto; /* Ajustez la marge pour centrer la modal */
+}
+
+.modal-content {
+    height: 100%; /* La modal occupe 100% de la hauteur de la modal-dialog */
+    overflow-y: auto; /* Activez le défilement vertical si nécessaire */
+}
+
+.modal-body {
+    padding: 1.25rem; /* Ajoutez un padding pour l'espace à l'intérieur de la modal-body */
+}
+
+
+.response-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .response-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .response-text, .response-date {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+  }
+
+  
+.back-button {
+  background-color: #6c757d; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprime la bordure */
+  padding: 10px 20px; /* Rembourrage pour l'espace intérieur */
+  border-radius: 5px; /* Bordure arrondie */
+  cursor: pointer; /* Curseur de souris */
+  transition: background-color 0.3s ease; /* Transition douce de la couleur de fond */
+}
+
+.back-button:hover {
+  background-color: #5a6268; /* Couleur de fond au survol */
+}
+
+.back-button:focus {
+  outline: none; /* Supprime la bordure de focus */
+}
+
+.back-button:active {
+  transform: translateY(1px); /* Légère translation vers le bas lors du clic */
+}
+
+  

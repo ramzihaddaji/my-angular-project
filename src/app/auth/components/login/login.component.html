@@ -1,0 +1,70 @@
+<app-navbarindex></app-navbarindex>
+
+<section class="vh-100" style="background-color:rgb(223, 223, 223);">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="assets/login1.png"
+                  alt="formulaire de connexion" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+  
+                    <form class="user" (ngSubmit)="loginUser()">
+                    
+  
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                        <span class="h1 fw-bold mb-0">Bienvenue </span>
+                     </div>
+
+  
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Connectez-vous à votre compte</h5>
+   
+                    <div class="form-outline mb-4">
+ 
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="loginRequest.email">
+                        </div>
+
+                     </div>
+  
+                    <div class="form-outline mb-4">
+ 
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="loginRequest.password">
+                    
+                      
+
+
+                    </div>
+  
+                    <div class="pt-1 mb-4">
+                      <button  class="btn btn-dark btn-lg btn-block" type="submit" >Connexion
+                        <i class="bi bi-arrow-right"></i>
+
+                      </button>
+ 
+                    </div>
+  
+                    <a class="small text-muted" routerLink="/forgotPassword">Mot de passe oublié ?</a>
+                    
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Vous n'avez pas de compte ? <a   routerLink="/register"
+                        style="color: #393f81;">Inscrivez-vous ici</a></p>
+                    <a href="#!" class="small text-muted">Conditions d'utilisation.</a>
+                    <a href="#!" class="small text-muted">Politique de confidentialité</a>
+                  </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>

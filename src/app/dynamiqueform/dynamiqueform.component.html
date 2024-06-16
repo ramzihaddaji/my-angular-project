@@ -1,0 +1,80 @@
+<app-navbarindex></app-navbarindex>
+<div style="background-image: url('assets/images/hero-1.jpg')">
+  <br>
+  <div class="container-3d mt-5" >
+    <form class="form-3d first-form" (ngSubmit)="onSubmit()">
+      <h2 class="form-title">Formulaire d'inscription</h2>
+      <div class="form-group">
+        <div *ngFor="let field of fields; let i = index" class="form-field">
+          <div class="input-wrapper">
+            <label>{{ field.title }}</label>
+            <!-- Affichage des options -->
+            <div *ngIf="field.type === 'radio' || field.type === 'select'">
+              <div *ngFor="let option of field.options; let j = index" class="form-check">
+                <input  type="{{field.type === 'radio' ? 'radio' : 'checkbox'}}" name="option{{i}}">
+                <label  for="option{{i}}">
+                  {{option}}
+                </label>
+              </div>
+            </div>
+            <!-- Input selon le type de champ -->
+            <input class="form-control" *ngIf="field.type === 'text'" type="text">
+            <input class="form-control" *ngIf="field.type === 'date'" type="date">
+            <input class="form-control" *ngIf="field.type === 'number'" type="number">
+            <textarea class="form-control" *ngIf="field.type === 'textarea'" type="textarea"></textarea>
+            <!-- Bouton pour supprimer le champ -->
+            <button class="btn btn-light btn-round" (click)="removeField(i)">
+              <i class="bi bi-trash3-fill custom-icon "> DELETE</i>
+            </button>
+          </div>
+        </div>
+        
+      </div>
+      <button type="submit" class="learn-more-button">Soumettre</button>
+    </form>
+  </div>
+  
+  <hr>
+  
+  <h3 class="form-title">Ajouter des champs</h3>
+  <div class="container-3d mt-5">
+    <div class="form-field  form-3d">
+      <label>Question</label>
+      <input class="form-control" type="text" [(ngModel)]="title">
+      <label>Type</label>
+      <select [(ngModel)]="type" class="form-select">
+        <option value="text">Text</option>
+        <option value="number">Number</option>
+        <option value="date">Date</option>
+        <option value="radio">Radio</option>
+        <option value="textarea">Textarea</option>
+        <option value="select">Select</option>
+      </select>
+      <div *ngIf="!(type === 'select' || type === 'radio')" >
+        <button class="learn-more-button" (click)="addField(title, type)">Ajouter</button>
+      </div>
+    </div>
+  
+  
+    <h3 *ngIf="type === 'select' || type === 'radio'" class="form-title">Ajouter des choix</h3>
+      <div *ngIf="type === 'select' || type === 'radio'" class="form-field  form-3d">
+      <div *ngIf="type === 'select' " class="option-input">
+        <label>Saisir les choix</label>
+        <input class="form-control" type="text" placeholder="Option" [(ngModel)]="option">
+        <button class="learn-more-button" (click)="addOption()">Ajouter un autre choix</button>
+      </div>
+  
+      <div *ngIf="type === 'radio'" class="option-input">
+        <label>Saisir les choix</label>
+        <input class="form-control" type="text" placeholder="Option" [(ngModel)]="option">
+        <button class="learn-more-button" (click)="addOption()">Ajouter un autre choix</button>
+      </div>
+  
+      <div *ngIf="type === 'select' || type === 'radio'" class="option-button">
+        <br>
+        <button class="learn-more-button" (click)="addField(title, type)">Ajouter</button>
+      </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

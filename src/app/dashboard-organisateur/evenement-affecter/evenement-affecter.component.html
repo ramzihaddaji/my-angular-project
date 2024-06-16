@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Evenements Affecter</h2>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Description</th>
+          <th>Lieu</th>
+          <th>Nombre de Places</th>
+          <th>Frais</th>
+          <th>Catégorie</th>
+          <th>Status</th>
+          <th>Prix Total Ressources</th>
+          <th>Ressources Affectées</th> <!-- Nouvelle colonne pour le lien -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of evenementList">
+          <td>{{ event.nom }}</td>
+          <td>{{ event.date_debut | date }}</td>
+          <td>{{ event.date_fin | date }}</td>
+          <td>
+            <span *ngIf="expandedDescriptions[event.id!]">{{ event.description }}</span>
+            <span *ngIf="!expandedDescriptions[event.id!]">{{ event.description | slice:0:30 }}</span>
+            <a href="#" *ngIf="event.description!.length > 30" (click)="toggleDescription($event, event.id!)">
+              {{ expandedDescriptions[event.id!] ? 'Voir moins' : 'Lire la suite' }}
+            </a>
+          </td>
+          <td>{{ event.lieu }}</td>
+          <td>{{ event.nombreDePlace }}</td>
+          <td>{{ event.frais }}</td>
+          <td>{{ event.categorie?.nom }}</td>
+          <td>
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                [ngClass]="{
+                  'btn-green': event.status === 'actif',
+                  'btn-red': event.status === 'inactif'
+                }"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {{
+                  event.status === "en_cours"
+                    ? "En cours"
+                    : event.status === "actif"
+                    ? "Actif"
+                    : "Inactif"
+                }}
+              </button>
+              <div class="dropdown-menu">
+                
+                <button
+                  class="dropdown-item"
+                  (click)="updateStatus(event.id, 'actif')"
+                  [ngClass]="{ 'btn-green': event.status === 'actif' }"
+                >
+                  Actif
+                </button>
+                <button
+                  class="dropdown-item"
+                  (click)="updateStatus(event.id, 'inactif')"
+                  [ngClass]="{ 'btn-red': event.status === 'inactif' }"
+                >
+                  Inactif
+                </button>
+              </div>
+            </div>
+          </td>
+          <td>{{ event.prixTotal| currency }}</td> <!-- Prix total des ressources -->
+          <!-- Ajout du lien dans la nouvelle colonne -->
+          <td>
+            <a [routerLink]="['/resourceEventOrg', event.id]">Afficher Ressources Affectées</a>
+            <a [routerLink]="['/filtreInscri', event.id]" style="color: red;"><button>Afficher les inscriptions dans l'événement</button></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="clearfix">
+      <div class="hint-text">
+        Affichage de <b>{{ evenementList.length }}</b> événements
+      </div>
+    </div>
+  </div>
+</div>

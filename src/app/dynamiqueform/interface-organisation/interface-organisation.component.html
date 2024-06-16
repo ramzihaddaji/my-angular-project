@@ -1,0 +1,77 @@
+<app-navbarindex></app-navbarindex>
+<div>
+  <div class="page-container" style="background-image: url('assets/images/hero-1.jpg')">
+    <div class="container">
+      <h1>Interface Organisation</h1>
+      <p>
+        Chaque événement que nous organisons est une opportunité de créer des moments inoubliables,
+        de connecter les gens et d'inspirer le changement. Avec chaque détail planifié avec soin, 
+        nous façonnons des expériences qui laissent une empreinte durable dans les cœurs et les esprits. 
+        Ensemble, donnons vie à des occasions qui transcendent l'ordinaire et inspirent à viser toujours plus haut.
+      </p>
+      <button 
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        Ajouter des ressources
+      </button>
+    </div>
+    <div *ngIf="evenement?.typeEvenement === 'Public'" class="text-center">
+      <button class="btn btn-primary" (click)="createForm()">Créer mon formulaire d'inscription</button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" #myModal>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ressources disponibles</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="category">Sous Catégorie:</label>
+          <select id="category" name="category" class="form-control" required [(ngModel)]="selectedSousCategorieId" (change)="loadRessourcesBySousCategorieId()">
+            <option value="">Sélectionnez une sous-catégorie</option>
+            <option *ngFor="let category of sousCategories" [value]="category.id">{{ category.sousCategorie }}</option>
+          </select>
+        </div>
+        
+        <div *ngIf="selectedSousCategorieId && ressources.length > 0" class="mt-4">
+          <h5>Ressources disponibles pour la sous-catégorie sélectionnée :</h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Quantité demandée</th>
+                <th>Ajouter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ressource of ressources">
+                <td>{{ ressource.ressource }}</td>
+                <td><input type="number" min="0" class="form-control" [(ngModel)]="ressource.quantiteDemandee"></td>
+                <td><input type="checkbox" class="form-check-input" [(ngModel)]="ressource.selected"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="selectedSousCategorieId && ressources.length === 0" class="mt-4">
+          <p>Aucune ressource disponible pour la sous-catégorie sélectionnée.</p>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-primary mt-3" #submitButton (click)="ajouterRessources()">Ajouter Ressources</button>
+          <button type="button" class="btn btn-secondary mt-3" (click)="annuler()" data-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

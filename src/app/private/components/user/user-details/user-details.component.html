@@ -1,0 +1,45 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ user.id ? "Modifier" : "Ajouter" }} Utilisateur</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" class="form-control" formControlName="nom" required />
+        </div>
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" class="form-control" formControlName="prenom" required />
+        </div>
+        <div class="form-group">
+          <label>NCIN</label>
+          <input type="text" class="form-control" formControlName="ncin" required />
+        </div>
+        <div class="form-group">
+          <label>Date de Naissance</label>
+          <input type="date" class="form-control" formControlName="date_naiss" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" required />
+        </div>
+        <div class="form-group">
+          <label>Rôle</label>
+          <select class="form-control" formControlName="role" required>
+            <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onBack()">Annuler</button>
+        <button type="submit" class="btn btn-success">{{ user.id ? "Enregistrer" : "Ajouter" }}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<form class="user" (ngSubmit)="registerOrganisateur()">
+  <div class="d-flex align-items-center mb-3 pb-1">
+    <span class="h1 fw-bold mb-0">Formulaire d'Inscription Organisateur</span>
+  </div>
+  <div class="form-group">
+    <label for="name">Nom :</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      [(ngModel)]="registerRequest.nom"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="prenom">Prénom :</label>
+    <input
+      type="text"
+      class="form-control"
+      id="prenom"
+      name="prenom"
+      [(ngModel)]="registerRequest.prenom"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="ncin">NCIN :</label>
+    <input
+      type="number"
+      class="form-control"
+      id="ncin"
+      name="ncin"
+      [(ngModel)]="registerRequest.ncin"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="date_naiss">Date de Naissance :</label>
+    <input
+      type="date"
+      class="form-control"
+      id="date_naiss"
+      name="date_naiss"
+      [(ngModel)]="registerRequest.date_naiss"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email :</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      [(ngModel)]="registerRequest.email"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Mot de Passe :</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      [(ngModel)]="registerRequest.password"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary btn-user btn-block">
+    S'inscrire
+  </button>
+</form>

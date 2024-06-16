@@ -1,0 +1,68 @@
+<app-navbarindex></app-navbarindex>
+<div class="container">
+  <div class="form-container">
+    <div class="inscription-form">
+      <h2>Inscription à l'événement :</h2>
+      <div *ngIf="questions.length > 0">
+        <form>
+          <div *ngFor="let question of questions" class="form-field">
+            <div class="input-wrapper">
+              <label>{{ question.title }}</label>
+              <input
+                class="form-control"
+                *ngIf="question.inputType === 'text'"
+                name="first"
+                type="text"
+                [placeholder]="question.title"
+                [(ngModel)]="question.userResponse"
+              />
+              <input
+                class="form-control"
+                *ngIf="question.inputType === 'date'"
+                name="first"
+                type="date"
+                [(ngModel)]="question.userResponse"
+              />
+              <input
+                class="form-control"
+                *ngIf="question.inputType === 'number'"
+                name="first"
+                type="number"
+                [placeholder]="question.title"
+                [(ngModel)]="question.userResponse"
+              />
+
+              <div *ngIf="question.inputType === 'radio'">
+                <div *ngFor="let choice of question.choices">
+                  <label>
+                    <input
+                      type="radio"
+                      name="{{ question.id }}"
+                      [value]="choice"
+                      [(ngModel)]="question.userResponse"
+                    />
+                    {{ choice }}
+                  </label>
+                </div>
+              </div>
+
+              <select
+                *ngIf="question.inputType === 'select'"
+                [(ngModel)]="question.userResponse"
+              >
+                <option
+                  *ngFor="let choice of question.choices"
+                  [value]="choice"
+                >
+                  {{ choice }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" (click)="createInscription()">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

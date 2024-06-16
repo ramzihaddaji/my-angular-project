@@ -1,0 +1,191 @@
+<div style="background-image: url('assets/images/hero-1.jpg')">
+  <app-navbarindex></app-navbarindex>
+  <br>
+
+  <form class="custom-form" style="background-color: #f0f0f0; padding: 20px; border-radius: 10px;">
+    <div class="modal-header">
+      <h4 class="modal-title">
+        {{ eventOrg.id ? "Edit" : "Organiser" }} evenement
+      </h4>
+    </div>
+    <div class="modal-body">
+      <label for="imageUrl">Image URL:</label>
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        class="form-control"
+        id="imageUrl"
+        name="imageUrl"
+        required
+      />
+      <div *ngIf="imageE" class="text-danger">
+        Choisir une image.
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <label>Nom</label>
+      <input
+        type="text"
+        [(ngModel)]="eventOrg.nom"
+        class="form-control"
+        name="nom"
+        required
+      />
+      <div *ngIf="nomInvalid" class="text-danger">Le nom est requis.</div>
+    </div>
+
+    <div class="modal-body">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        [(ngModel)]="eventOrg.description"
+        class="form-control"
+        name="description"
+        required
+      ></textarea>
+      <div *ngIf="descriptionInvalid" class="text-danger">La description est requise.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Date Début</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="eventOrg.date_debut"
+        class="form-control"
+        name="date_debut"
+        required
+      />
+      <div *ngIf="dateDebutInvalid" class="text-danger">La date de début est requise.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Date Fin</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="eventOrg.date_fin"
+        class="form-control"
+        name="date_fin"
+        required
+      />
+      <div *ngIf="dateFinInvalid" class="text-danger">La date de fin est requise.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Lieu</label>
+      <input
+        type="text"
+        [(ngModel)]="eventOrg.lieu"
+        class="form-control"
+        name="lieu"
+        required
+      />
+      <div *ngIf="lieuInvalid" class="text-danger">Le lieu est requis.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="typeEvenement">Type de Evenement</label>
+      <select
+        class="form-control"
+        id="typeEvenement"
+        [(ngModel)]="eventOrg.typeEvenement"
+        name="typeEvenement"
+        required
+      >
+        <option value="Personnel">Personnel</option>
+        <option value="Public">Public</option>
+      </select>
+      <div *ngIf="typeEvenementE" class="text-danger">
+        Choisir une option.
+      </div>
+    </div>
+
+    <!-- Afficher les catégories en fonction du type d'événement -->
+    <div *ngIf="eventOrg.typeEvenement === 'Personnel'" class="form-group">
+      <label for="category">Catégorie Personnel:</label>
+      <select
+        id="category"
+        name="category"
+        class="form-control"
+        [(ngModel)]="eventOrg.categorieId"
+        required
+      >
+        <option value="">Sélectionnez une catégorie</option>
+        <option *ngFor="let category of getPersonnelCategorie()" [value]="category.id">
+          {{ category.nom }}
+        </option>
+      </select>
+      <div *ngIf="categorieE" class="text-danger">
+        Choisir une option.
+      </div>
+    </div>
+
+    <div *ngIf="eventOrg.typeEvenement === 'Public'">
+      <div class="form-group">
+        <label>Nombre de Places</label>
+        <input
+          type="number"
+          [(ngModel)]="eventOrg.nombreDePlace"
+          class="form-control"
+          name="nombreDePlace"
+          required
+        />
+        <div *ngIf="nombreDePlaceInvalid" class="text-danger">Le nombre de places est requis.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="fraisType">Type de Frais</label>
+        <select
+          class="form-control"
+          id="fraisType"
+          [(ngModel)]="fraisType"
+          name="fraisType"
+          required
+        >
+          <option value="gratuit">Gratuit</option>
+          <option value="payant">Payant</option>
+        </select>
+        <div *ngIf="typeFrais" class="text-danger">
+          Choisir une option.
+        </div>
+      </div>
+
+      <div *ngIf="fraisType === 'payant'" class="form-group">
+        <label for="frais">Frais</label>
+        <input
+          type="number"
+          [(ngModel)]="eventOrg.frais"
+          class="form-control"
+          name="frais"
+          required
+        />
+        <div *ngIf="typeFrais" class="text-danger">
+          Choisir une option.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Catégorie Public:</label>
+        <select
+          id="category"
+          name="category"
+          class="form-control"
+          [(ngModel)]="eventOrg.categorieId"
+          required
+        >
+          <option value="">Sélectionnez une catégorie</option>
+          <option *ngFor="let category of getPublicCategorie()" [value]="category.id">
+            {{ category.nom }}
+          </option>
+        </select>
+        <div *ngIf="categorieE" class="text-danger">
+          Choisir une option.
+        </div>
+      </div>
+    </div>
+
+    <input class="btn btn-primary" type="button" value="Save" (click)="addEventOrg()" />
+  </form>
+
+  <app-footer></app-footer>
+</div>

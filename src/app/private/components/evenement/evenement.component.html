@@ -1,0 +1,184 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Evenements</h2>
+        </div>
+        <div class="col-sm-6">
+          <a
+            [routerLink]="'/evenement/new'"
+            class="btn btn-success"
+            data-toggle="modal"
+          >
+            <span>Ajouter Nouveau</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Description</th>
+            <th>Lieu</th>
+            <th>nombreDePlace</th>
+            <th>Frais</th>
+            <th>Catégorie</th>
+            <th>organisateur</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of evenementList">
+            <td>{{ event.nom }}</td>
+            <td>{{ event.date_debut | date }}</td>
+            <td>{{ event.date_fin | date }}</td>
+            <td>
+              <span *ngIf="expandedDescriptions[event.id!]">{{ event.description }}</span>
+              <span *ngIf="!expandedDescriptions[event.id!]">{{ event.description | slice:0:30 }}</span>
+              <a href="#" *ngIf="event.description!.length > 30" (click)="toggleDescription($event, event.id!)">
+                {{ expandedDescriptions[event.id!] ? 'Voir moins' : 'Lire la suite' }}
+              </a>
+            </td>
+            <td>{{ event.lieu }}</td>
+            <td>{{ event.nombreDePlace }}</td>
+            <td>{{ event.frais }}</td>
+            <td>{{ event.categorie?.nom }}</td>
+            <td>{{ event.utilisateurCOAId }}</td>
+
+            <td>
+              <div class="dropdown">
+                <button
+                  class="btn dropdown-toggle"
+                  type="button"
+                  [ngClass]="{
+                    'btn-yellow': event.status === 'en_cours',
+                    'btn-green': event.status === 'actif',
+                    'btn-red': event.status === 'inactif'
+                  }"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {{
+                    event.status === "en_cours"
+                      ? "En cours"
+                      : event.status === "actif"
+                      ? "Actif"
+                      : "Inactif"
+                  }}
+                </button>
+                <div class="dropdown-menu">
+                  <button
+                    class="dropdown-item"
+                    (click)="updateStatus(event.id, 'en_cours')"
+                    [ngClass]="{ 'btn-yellow': event.status === 'en_cours' }"
+                  >
+                    En cours
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    (click)="updateStatus(event.id, 'actif')"
+                    [ngClass]="{ 'btn-green': event.status === 'actif' }"
+                  >
+                    Actif
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    (click)="updateStatus(event.id, 'inactif')"
+                    [ngClass]="{ 'btn-red': event.status === 'inactif' }"
+                  >
+                    Inactif
+                  </button>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <a
+                [routerLink]="'/evenement/' + event.id"
+                class="edit"
+                data-toggle="modal"
+              >
+                <span>Modifier</span>
+              </a>
+              <!-- Bouton de suppression -->
+              <a
+                href="#deleteModal"
+                class="delete"
+                data-toggle="modal"
+                (click)="selectEvenement(event)"
+              >
+                <span>Supprimer</span>
+              </a>
+
+              <a
+                href="javascript:;"
+                class="text-secondary font-weight-bold text-xs"
+                data-toggle="tooltip"
+                data-original-title="Edit event"
+                routerLink="/affecterOrganisateur/{{ event.id }}"
+                ><i class="bi bi-pen custom-icon"></i>cliquez pour valider</a
+              >
+              <p></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="clearfix">
+      <div class="hint-text">
+        Affichage de <b>{{ evenementList.length }}</b> événements
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="deleteModal" class="modal fade" *ngIf="selectedEvenement">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Supprimer l'événement</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Êtes-vous sûr de vouloir supprimer cet événement ?
+            {{ selectedEvenement.nom }}
+          </p>
+          <p class="text-warning">
+            <small>Cette action ne peut pas être annulée.</small>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <input
+            type="button"
+            class="btn btn-default"
+            data-dismiss="modal"
+            value="Annuler"
+          />
+          <input
+            type="submit"
+            class="btn btn-danger"
+            (click)="deleteEvenement()"
+            data-dismiss="modal"
+            value="Supprimer"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

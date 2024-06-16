@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  width: 70%; /* 70% de la largeur de la page */
+  padding: 20px;
+  margin-top: 50px;
+  background: #ffffff59;
+  border-radius: 10px;
+  box-shadow: 3px 3px 23px -9px rgba(0, 0, 0, 0.86);
+}
+
+.inscription-form h2 {
+  margin-bottom: 20px;
+}
+
+.inscription-form .form-field {
+  margin-bottom: 20px;
+}
+
+.inscription-form label {
+  font-weight: bold;
+}
+
+.inscription-form input[type="text"],
+.inscription-form input[type="date"],
+.inscription-form input[type="number"],
+.inscription-form select {
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .35rem;
+  border: 1px solid #d1d3e2;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.inscription-form button {
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border: 1px solid #fff !important;
+  border-radius: 0px !important;
+  background-color: #ffffffad;
+  color: #555;
+  transition: background-color .15s ease-in-out;
+}
+
+.inscription-form button:hover {
+  background-color: #fff !important;
+}

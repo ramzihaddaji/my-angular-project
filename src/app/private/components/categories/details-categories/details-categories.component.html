@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <form>
+      <div class="modal-header">
+        <h4 class="modal-title">{{ categorie.id ? "Modifier" : "Ajouter" }} Catégorie</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="onBack()" >&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" class="form-control" id="nom" [(ngModel)]="categorie.nom" name="nom" required>
+        </div>
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select class="form-control" id="type" [(ngModel)]="categorie.type" name="type" required>
+            <option value="Personnel">Personnel</option>
+            <option value="Public">Public</option>
+          </select>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <input type="button"  class="btn btn-success" value="Enregistrer" (click)="saveCategorie() " />
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+/* styles.css */
+
+/* Styles pour la section hero */
+#hero {
+    background: linear-gradient(rgba(var(--c-brand-rgb), 0.507), rgba(var(--c-brand-rgb), 0.438));
+    background-position: center;
+    background-size: cover;
+}
+
+/* Styles pour les titres */
+/* Mise à jour des styles pour les titres */
+h1, h5 {
+    color: gray;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: lighter;
+    text-transform: uppercase; /* Mettre en majuscules */
+}
+
+h5 {
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: uppercase; /* Mettre en majuscules */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+}
+
+
+/* Autres styles personnalisés */
+/* Ajoutez d'autres styles personnalisés selon vos besoins */

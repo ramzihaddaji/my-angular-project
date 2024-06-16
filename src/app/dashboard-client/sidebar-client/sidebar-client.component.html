@@ -1,0 +1,62 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Barre latérale - Marque -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" >
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Page Client</div>
+    </a>
+
+    <!-- Séparateur -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Élément de navigation - Tableau de bord -->
+    <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'/dashboardclient/'+ userId+ '/home'">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Tableau de bord</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'/dashboardclient/'+ userId+'/modifiePro/' + userId">
+            <a  class="text-secondary font-weight-bold text-xs " data-toggle="tooltip" data-original-title="Modifier le profil"><i class="bi bi-pen custom-icon"></i></a> <p> Modifier le profil </p>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'/dashboardclient/'+ userId+'/Myinscri/' + userId">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Consulter la liste de participation événements </span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    
+    <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'/dashboardclient/'+ userId+'/myEvenement/' + userId">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Consulter les événements créés</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" routerLink="/login" (click)="logout()">Déconnexion</a>
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+    </li>
+    <hr class="sidebar-divider">
+
+    <!-- Séparateur -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Message de la barre latérale -->
+    <div class="sidebar-card d-none d-lg-flex">
+        <img class="sidebar-card-illustration mb-2" src="assets/img/undraw_rocket.svg" alt="...">
+        <p class="text-center mb-2"><strong>Eventy Pro</strong> est doté de fonctionnalités premium, de contact direct et plus encore !</p>
+        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Passer à la version Pro !</a>
+    </div>
+
+</ul>

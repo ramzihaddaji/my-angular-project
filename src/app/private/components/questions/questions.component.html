@@ -1,0 +1,86 @@
+
+<div class="container">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Question</h2>
+          </div>
+          <div class="col-sm-6">
+            <a [routerLink]="'/question/new'" class="btn btn-success" data-toggle="modal">
+              <span>Ajouter Nouveau</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>inputType</th>
+            <th>createdAt</th>
+            <th>updatedAt</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let question of QuestionList">
+            <td>{{ question.id }}</td>
+            <td>{{ question.title }}</td>
+            <td>{{ question.inputType }}</td>
+            <td>{{ question.createdAt }}</td>
+            <td>{{ question.updatedAt }}</td>
+            <td>
+              <a [routerLink]="'/question/' + question.id" class="edit" data-toggle="modal">
+                <span>Modifier</span>
+              </a>
+              <a href="#deleteModal" class="delete" data-toggle="modal" (click)="selectQuestion(question)">
+                <span>Supprimer</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="clearfix">
+        <div class="hint-text">
+          Affichage de <b>{{ QuestionList.length }}</b> éléments
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="deleteModal" class="modal fade" *ngIf="selectedQuestion">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Modal de Suppression</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir supprimer cet enregistrement ? {{ selectedQuestion.title }}</p>
+            <p class="text-warning">
+              <small>Cette action ne peut pas être annulée.</small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <input
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                value="Annuler"
+              />
+              <input
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteQuestion()"
+                data-dismiss="modal"
+                value="Supprimer"
+              />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

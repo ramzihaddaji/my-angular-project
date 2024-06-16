@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">{{ choice.id ? "Edit" : "Add" }} Choice</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="label">label</label>
+            <input type="text" class="form-control" id="label" [(ngModel)]="choice.label" name="label" required>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deleteChoice()">Delete</button>
+          <input type="button" class="btn btn-success" value="Save" (click)="saveChoice()" />
+        </div>
+      </form>
+    </div>
+  </div>

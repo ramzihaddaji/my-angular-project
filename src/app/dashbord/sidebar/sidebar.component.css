@@ -1,0 +1,13 @@
+/* Custom CSS for sidebar */
+.sidebar {
+    width: 250px; /* Adjust the width as needed */
+  }
+  
+  .sidebar .nav-item .nav-link {
+    white-space: normal; /* Allow text to wrap */
+  }
+  
+  .sidebar .collapse-inner .collapse-item {
+    white-space: normal; /* Allow text to wrap */
+  }
+  

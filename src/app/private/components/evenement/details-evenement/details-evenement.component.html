@@ -1,0 +1,80 @@
+
+<div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        
+        <div class="modal-header">
+          <h4 class="modal-title">{{ evenement.id ? "Edit" : "Add" }} evenement</h4>
+          <button type="button" class="close" data-dismiss="modal" (click)="onBack()">&times;</button>
+        </div>
+        <label for="imageUrl">Image URL:</label>
+        <input type="file" (change)="onFileSelected($event)" class="form-control" id="imageUrl" name="imageUrl" required>
+  
+        <div class="modal-body">
+          <label>nom</label>
+          <input type="text" [(ngModel)]="evenement.nom" class="form-control" name="nom" required />
+        </div>
+        <div class="modal-body">
+          <label>description</label>
+          <input type="text" [(ngModel)]="evenement.description" class="form-control" name="description" required />
+        </div>
+
+          <div class="form-group">
+            <label>date_debut</label>
+            <input type="datetime-local" [(ngModel)]="evenement.date_debut" class="form-control" name="date_debut" required />
+          </div>
+          <div class="form-group">
+            <label>date_fin</label>
+            <input type="datetime-local" [(ngModel)]="evenement.date_fin" class="form-control" name="date_fin" required />
+          </div>
+          <div class="form-group">
+            <label>lieu</label>
+            <input type="text" [(ngModel)]="evenement.lieu" class="form-control" name="lieu" required />
+          </div>
+          <div class="form-group">
+            <label for="fraisType">Type de Frais</label>
+            <select
+              class="form-control"
+              id="fraisType"
+              [(ngModel)]="fraisType"
+              name="fraisType"
+              required
+            >
+              <option value="gratuit">Gratuit</option>
+              <option value="payant">Payant</option>
+            </select>
+          </div>
+    
+          <div *ngIf="fraisType === 'payant'" class="form-group">
+            <label for="frais">Frais</label>
+            <input
+              type="number"
+              [(ngModel)]="evenement.frais"
+              class="form-control"
+              name="frais"
+              required
+            />
+          </div>
+    
+          <div class="modal-body">
+            <label>Nombre De Place</label>
+            <input type="number" [(ngModel)]="evenement.nombreDePlace" class="form-control" name="nombreDePlace" required />
+          </div>
+          
+          <div class="form-group">
+            <label>Categorie</label>
+            <select class="form-control" [(ngModel)]="evenement.categorieId" name="categorieId" required>
+              <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.nom }}</option>
+            </select>
+          </div>
+          
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deleteEvenement()">Delete</button>
+          <input type="button" class="btn btn-success" value="Save" (click)="saveEvenement()" />
+        </div>
+      </form>
+      
+    </div>
+  </div>
+  

@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Mes Événements</h2>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Description</th>
+            <th>Lieu</th>
+            <th>Nombre de Places</th>
+            <th>Frais</th>
+            <th>Catégorie</th>
+            <th>Statut</th>
+            <th>Prix</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of evenementList">
+            <td>{{ event.nom }}</td>
+            <td>{{ event.date_debut | date }}</td>
+            <td>{{ event.date_fin | date }}</td>
+            <td>
+              <span *ngIf="expandedDescriptions[event.id!]">{{ event.description }}</span>
+              <span *ngIf="!expandedDescriptions[event.id!]">{{ event.description | slice:0:30 }}</span>
+              <a href="#" *ngIf="event.description!.length > 30" (click)="toggleDescription($event, event.id!)">
+                {{ expandedDescriptions[event.id!] ? 'Voir moins' : 'Lire la suite' }}
+              </a>
+            </td>
+            <td>{{ event.lieu }}</td>
+            <td>{{ event.nombreDePlace }}</td>
+            <td>{{ event.frais }}</td>
+            <td>{{ event.categorie?.nom }}</td>
+            <td>{{ event.status }}</td>
+            <td>{{ event.prixTotal }} $</td>
+            <td>
+              <button *ngIf="event.type =='organisation' "
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="displayInscription(event.id ?? 0)"
+              >
+                Inscriptions
+              </button>
+              <a *ngIf="event.type =='annonce' " [routerLink]="['/filtreInscri', event.id]" style="color: red;"><button>Afficher les inscriptions dans l'événement</button></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="clearfix">
+      <div class="hint-text">
+        Affichage de <b>{{ evenementList.length }}</b> événements
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Réponses à cette inscription</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div *ngFor="let response of ResponseList" class="response-card">
+            <p class="response-title">Date d'inscription : {{ response.date_inscription }}</p>
+            <p class="response-text">Nom d'utilisateur : {{ response.user?.nom }} {{ response.user?.prenom }}</p>
+            <p>Statut d'inscription : {{ response.status }}</p>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
