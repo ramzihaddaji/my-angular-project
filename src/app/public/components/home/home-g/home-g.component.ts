@@ -39,7 +39,7 @@ export class HomeGComponent {
   }
 
   evenementList: Evenement[] = [];
-  selectedEvenement: Evenement | null = null;
+  selectedEvenement?: Evenement | null = null;
 
   displayEvenement() {
     this.evenementService.getAllEvenement().subscribe((res) => {
